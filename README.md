@@ -1,0 +1,1 @@
+This is a practice project to integrate Screen Stack Navigation, Tab Navigation & Drawer Navigation.
