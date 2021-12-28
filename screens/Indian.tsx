@@ -7,7 +7,7 @@ export const Indian = ({ navigation }: HomeStackProps) => {
     <RestaurantDetail
       name1="Indian Cuisine"
       name2="Bhat, Roti, Dal, Bhaji"
-      onGoBackHome={() => navigation.popToTop()}
+      onGoBackHome={() => navigation.navigate('Home')}
     />
   );
 };

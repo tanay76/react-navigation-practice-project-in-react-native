@@ -7,7 +7,7 @@ export const Mughlai = ({ navigation }: HomeStackProps) => {
     <RestaurantDetail
       name1="Mughlai Cuisine"
       name2="Chicken & Mutton Kababs"
-      onGoBackHome={() => navigation.popToTop()}
+      onGoBackHome={() => navigation.navigate('Home')}
     />
   );
 };

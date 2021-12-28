@@ -7,7 +7,7 @@ export const Chinese = ({ navigation }: HomeStackProps) => {
     <RestaurantDetail
       name1="Chinese Cuisine"
       name2="Noodles (Gravy, Hakka), Chilli-Chicken"
-      onGoBackHome={() => navigation.popToTop()}
+      onGoBackHome={() => navigation.navigate('Home')}
     />
   );
 };

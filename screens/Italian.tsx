@@ -7,7 +7,7 @@ export const Italian = ({ navigation }: HomeStackProps) => {
     <RestaurantDetail
       name1="Italian Cuisine"
       name2="Pizza, Burger"
-      onGoBackHome={() => navigation.popToTop()}
+      onGoBackHome={() => navigation.navigate('Home')}
     />
   );
 };
