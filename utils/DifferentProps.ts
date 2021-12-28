@@ -25,10 +25,18 @@ export type SettingsStackParamList = {
 };
 
 export type TabStackParamList = {
-  Home: undefined;
-  Restaurants: undefined;
-  Profile: undefined;
-  Settings: undefined;
+  HomeView: undefined;
+  RestaurantsView: undefined;
+  ProfileView: undefined;
+  SettingsView: undefined;
+};
+
+export type MainStackParamList = {
+  HomeMainStack: undefined;
+  RestaurantsMainStack: undefined;
+  ProfileMainStack: undefined;
+  SettingsMainStack: undefined;
+  TabMainStack: undefined;
 };
 
 export type HomeStackProps = StackScreenProps<HomeStackParamList>;
@@ -45,3 +53,5 @@ export type ProfileStackProps = StackScreenProps<ProfileStackParamList>;
 export type SettingsStackProps = StackScreenProps<SettingsStackParamList>;
 
 export type BottomStackProps = BottomTabScreenProps<TabStackParamList>;
+
+export type MainStackProps = StackScreenProps<MainStackParamList>;

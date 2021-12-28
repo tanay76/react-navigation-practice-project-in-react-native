@@ -5,17 +5,19 @@ import { HomeStackScreen } from "./HomeStackScreen";
 import { RestaurantsStackScreen } from "./RestaurantsStackScreen";
 import { ProfileStackScreen } from "./ProfileStackScreen";
 import { SettingsStackScreen } from "./SettingsStackScreen";
-import { TabStackParamList } from "../utils/DifferentProps";
+import {
+  TabStackParamList,
+} from "../utils/DifferentProps";
 
 const routes = [
-  { name: "Home", component: HomeStackScreen, icon: "home" },
+  { name: "HomeView", component: HomeStackScreen, icon: "home" },
   {
-    name: "Restaurants",
+    name: "RestaurantsView",
     component: RestaurantsStackScreen,
     icon: "restaurant",
   },
-  { name: "Profile", component: ProfileStackScreen, icon: "people" },
-  { name: "Settings", component: SettingsStackScreen, icon: "settings" },
+  { name: "ProfileView", component: ProfileStackScreen, icon: "people" },
+  { name: "SettingsView", component: SettingsStackScreen, icon: "settings" },
 ] as const;
 
 const TabStack = createBottomTabNavigator<TabStackParamList>();
@@ -23,6 +25,7 @@ const TabStack = createBottomTabNavigator<TabStackParamList>();
 export const TabNavigation = () => {
   return (
     <TabStack.Navigator
+      initialRouteName="HomeView"
       screenOptions={({ route }) => {
         return {
           tabBarIcon: ({ focused }) => (
@@ -33,13 +36,13 @@ export const TabNavigation = () => {
             />
           ),
           headerShown: false,
-          tabBarShowLabel: false,
+          tabBarShowLabel: false
         };
       }}
     >
-      {routes.map(({ name, component }) => (
+      {routes.map(({ name, component }) => 
         <TabStack.Screen key={name} name={name} component={component} />
-      ))}
+      )}
     </TabStack.Navigator>
   );
 };

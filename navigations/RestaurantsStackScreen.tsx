@@ -13,6 +13,8 @@ import { Mughlai } from "../screens/Mughlai";
 import { Biriyani } from "../screens/Biriyani";
 import { Restaurant } from "../screens/Restaurant";
 import { Text } from "react-native";
+import { AntDesign } from "@expo/vector-icons";
+import { TouchableOpacity } from "react-native";
 
 const RestaurantsStack = createStackNavigator<RestaurantsStackParamList>();
 
@@ -48,24 +50,41 @@ export const RestaurantsStackScreen = () => {
         headerTintColor: "#000",
         headerTitleStyle: {
           fontWeight: "bold",
+          textTransform: "uppercase",
         },
       }}
     >
-      {screens.map((screen) =>
-        screen.name !== "Restaurant"
-          ? showScreen(screen.name, screen.component, { title: screen.name })
-          : showScreen(
-              screen.name,
-              screen.component,
-              ({ route }: RestaurantProps) => ({
-                headerTitle: () => (
-                  <Text style={{ fontFamily: "poppins-bold", fontSize: 18 }}>
-                    {route.params.name} Restaurant
-                  </Text>
-                ),
-              })
-            )
-      )}
+      {screens.map((screen) => {
+        if (screen.name === "Restaurants") {
+          return showScreen(
+            screen.name,
+            screen.component,
+            ({ navigation }: any) => ({
+              title: "Restaurants",
+              headerLeft: () => (
+                <TouchableOpacity onPress={() => navigation.goBack()}>
+                  <AntDesign name="arrowleft" size={24} color="black" />
+                </TouchableOpacity>
+              ),
+            })
+          );
+        } else if (screen.name === "Restaurant") {
+          return showScreen(
+            screen.name,
+            screen.component,
+            ({ route }: RestaurantProps) => ({
+              headerTitle: () => (
+                <Text style={{ fontFamily: "poppins-bold", fontSize: 18 }}>
+                  {route.params.name} Restaurant
+                </Text>
+              ),
+            })
+          );
+        }
+        return showScreen(screen.name, screen.component, {
+          title: screen.name,
+        });
+      })}
     </RestaurantsStack.Navigator>
   );
 };

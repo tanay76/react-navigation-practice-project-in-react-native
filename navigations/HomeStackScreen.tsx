@@ -16,6 +16,7 @@ export const HomeStackScreen = () => {
         headerTintColor: "#000",
         headerTitleStyle: {
           fontWeight: "bold",
+          textTransform: "uppercase",
         },
       }}
     >
