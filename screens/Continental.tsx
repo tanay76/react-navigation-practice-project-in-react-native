@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet, ScrollView, ViewStyle } from "react-native";
 import { RestaurantCard } from "../components/RestaurantCard";
 import useDimensions from "../hooks/useDimensions";
-import { RestaurantProps } from "../navigations/ScreenNavigation";
+import { RestaurantProps } from "../utils/DifferentProps";
 
 export const Continental = ({ navigation }: RestaurantProps) => {
   const { height: mobHeight, width: mobWidth } = useDimensions();

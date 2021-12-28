@@ -2,7 +2,7 @@ import React from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { Card } from "../components/Card";
 import { MyButton } from "../components/MyButton";
-import { RestaurantProps } from "../navigations/ScreenNavigation";
+import { RestaurantProps } from "../utils/DifferentProps";
 
 
 export const Restaurant = ({ navigation, route }: RestaurantProps) => {

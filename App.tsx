@@ -1,13 +1,10 @@
-// import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View } from "react-native";
+import { StyleSheet } from "react-native";
 import AppLoading from "expo-app-loading";
 import * as Font from "expo-font";
 import { useEffect, useState } from "react";
-// import { ExploreScreen } from "./screens/ExploreScreen";
-// import { RestaurantsScreen } from "./screens/RestaurantsScreen";
-// import { Indian } from "./screens/Indian";
-// import { Profile } from "./screens/Profile";
-import { ScreenNavigation } from "./navigations/ScreenNavigation";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import { TabNavigation } from "./navigations/TabNavigation";
+import { NavigationContainer } from "@react-navigation/native";
 
 export default function App() {
   const [fontsLoaded, setFontsLoaded] = useState(false);
@@ -29,9 +26,15 @@ export default function App() {
     return <AppLoading />;
   }
   return (
-    <View style={styles.container}>
-      <ScreenNavigation />
-    </View>
+    <SafeAreaProvider>
+      <SafeAreaView style={styles.container}>
+        <NavigationContainer>
+          {/* <ScreenNavigation /> */}
+          <TabNavigation />
+          {/* <MixedNavigator /> */}
+        </NavigationContainer>
+      </SafeAreaView>
+    </SafeAreaProvider>
   );
 }
 

@@ -5,7 +5,6 @@ import {
   StyleSheet,
   ScrollView,
   Image,
-  ImageStore,
 } from "react-native";
 
 const ManImage = require("../assets/profile-image.png");

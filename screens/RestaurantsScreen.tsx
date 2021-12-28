@@ -2,9 +2,9 @@ import React from "react";
 import { View, Text, StyleSheet, ScrollView, ViewStyle } from "react-native";
 import { RestaurantCard } from "../components/RestaurantCard";
 import useDimensions from "../hooks/useDimensions";
-import { Props, RestaurantProps } from "../navigations/ScreenNavigation";
+import { BottomStackProps, HomeStackProps, RestaurantProps, RestaurantsStackProps } from "../utils/DifferentProps";
 
-type RSProps = Props & RestaurantProps;
+type RSProps = HomeStackProps & RestaurantsStackProps & RestaurantProps & BottomStackProps;
 
 export const RestaurantsScreen = ({ navigation }: RSProps) => {
   const { height: mobHeight, width: mobWidth } = useDimensions();

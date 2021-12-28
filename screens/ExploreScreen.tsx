@@ -3,9 +3,21 @@ import { View, Text, StyleSheet, ScrollView, ViewStyle } from "react-native";
 import useDimensions from "../hooks/useDimensions";
 import { Menu } from "../components/Menu";
 import { RestaurantCard } from "../components/RestaurantCard";
-import { Props } from "../navigations/ScreenNavigation";
+import {
+  BottomStackProps,
+  HomeStackProps,
+  ProfileStackProps,
+  RestaurantProps,
+  RestaurantsStackProps,
+} from "../utils/DifferentProps";
 
-export const ExploreScreen = ({ navigation }: Props) => {
+type ExploreProps = HomeStackProps &
+  RestaurantsStackProps &
+  RestaurantProps &
+  ProfileStackProps &
+  BottomStackProps;
+
+export const ExploreScreen = ({ navigation }: ExploreProps) => {
   const { height: mobileHeight, width: mobileWidth } = useDimensions();
 
   const secondView = {

@@ -1,8 +1,8 @@
 import React from "react";
 import { RestaurantDetail } from "../components/RestaurantDetail";
-import { Props } from "../navigations/ScreenNavigation";
+import { HomeStackProps } from "../utils/DifferentProps";
 
-export const Mughlai = ({ navigation }: Props) => {
+export const Mughlai = ({ navigation }: HomeStackProps) => {
   return (
     <RestaurantDetail
       name1="Mughlai Cuisine"
