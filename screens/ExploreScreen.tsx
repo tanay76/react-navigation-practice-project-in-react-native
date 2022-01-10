@@ -4,20 +4,24 @@ import useDimensions from "../hooks/useDimensions";
 import { Menu } from "../components/Menu";
 import { RestaurantCard } from "../components/RestaurantCard";
 import {
-  BottomStackProps,
-  HomeStackProps,
-  ProfileStackProps,
-  RestaurantProps,
-  RestaurantsStackProps,
+  // DrawerStackProps,
+  // HomeStackProps,
+  MixedStackProps,
+  // ProfileStackProps,
+  // RestaurantProps,
+  // RestaurantsStackProps
 } from "../utils/DifferentProps";
+import { Screen } from "../navigations/Screen";
 
-type ExploreProps = HomeStackProps &
-  RestaurantsStackProps &
-  RestaurantProps &
-  ProfileStackProps &
-  BottomStackProps;
+// type ExploreScreenProps = {
+//   props1 : DrawerStackProps;
+//   props2: RestaurantsStackProps;
+//   props3: RestaurantProps;
+//   props4: ProfileStackProps;
+//   props5: HomeStackProps;
+// };
 
-export const ExploreScreen = ({ navigation }: ExploreProps) => {
+export const ExploreScreen = ({ navigation }: MixedStackProps) => {
   const { height: mobileHeight, width: mobileWidth } = useDimensions();
 
   const secondView = {
@@ -35,49 +39,74 @@ export const ExploreScreen = ({ navigation }: ExploreProps) => {
   } as ViewStyle;
 
   return (
-    <ScrollView contentContainerStyle={styles.screen}>
-      <View style={styles.view}>
-        <Text style={styles.mainText}>Restaurants</Text>
-        <View style={secondView}>
-          <RestaurantCard
-            name="Biriyani Reastaurant"
-            onPress={() =>
-              navigation.navigate("Restaurant", { name: "Biriyani" })
-            }
-          />
-          <RestaurantCard
-            name="Mughlai Reastaurant"
-            onPress={() =>
-              navigation.navigate("Restaurant", { name: "Mughlai" })
-            }
-          />
-          <RestaurantCard
-            name="Continental"
-            onPress={() => navigation.navigate("Continental")}
-          />
+    <Screen
+      navigation={navigation}
+      focusedScreen={navigation.isFocused() ? "HomeDrawer" : ""}
+    >
+      <ScrollView contentContainerStyle={styles.screen}>
+        <View style={styles.view}>
+          <Text style={styles.mainText}>Restaurants</Text>
+          <View style={secondView}>
+            <RestaurantCard
+              name="Biriyani Restaurant"
+              onPress={() =>
+                navigation.navigate("RestaurantsDrawer", {
+                  screen: "Restaurant",
+                  params: { name: "Biriyani" },
+                })
+              }
+            />
+            <RestaurantCard
+              name="Mughlai Restaurant"
+              onPress={() =>
+                navigation.navigate("RestaurantsDrawer", {
+                  screen: "Restaurant",
+                  params: { name: "Mughlai" },
+                })
+              }
+            />
+            <RestaurantCard
+              name="Continental"
+              onPress={() =>
+                navigation.navigate("RestaurantsDrawer", {
+                  screen: "Continental",
+                })
+              }
+            />
+          </View>
+          <Text style={styles.mainText}>Restaurants Near You</Text>
+          <View style={thirdView}>
+            <RestaurantCard
+              name="Biriyani Restaurant"
+              onPress={() =>
+                navigation.navigate("RestaurantsDrawer", {
+                  screen: "Restaurant",
+                  params: { name: "Biriyani" },
+                })
+              }
+            />
+            <RestaurantCard
+              name="Mughlai Restaurant"
+              onPress={() =>
+                navigation.navigate("RestaurantsDrawer", {
+                  screen: "Restaurant",
+                  params: { name: "Mughlai" },
+                })
+              }
+            />
+            <Menu
+              onExplorePress={() => navigation.push("Home")}
+              onRestaurantsPress={() =>
+                navigation.navigate("RestaurantsDrawer", {
+                  screen: "Restaurants",
+                })
+              }
+              onProfilePress={() => navigation.navigate("ProfileDrawer")}
+            />
+          </View>
         </View>
-        <Text style={styles.mainText}>Restaurants Near You</Text>
-        <View style={thirdView}>
-          <RestaurantCard
-            name="Biriyani Reastaurant"
-            onPress={() =>
-              navigation.navigate("Restaurant", { name: "Biriyani" })
-            }
-          />
-          <RestaurantCard
-            name="Mughlai Reastaurant"
-            onPress={() =>
-              navigation.navigate("Restaurant", { name: "Mughlai" })
-            }
-          />
-          <Menu
-            onExplorePress={() => navigation.push("Home")}
-            onRestaurantsPress={() => navigation.navigate("Restaurants")}
-            onProfilePress={() => navigation.navigate("Profile")}
-          />
-        </View>
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </Screen>
   );
 };
 

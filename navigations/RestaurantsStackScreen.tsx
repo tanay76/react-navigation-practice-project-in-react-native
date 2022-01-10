@@ -1,7 +1,6 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import {
-  RestaurantProps,
   RestaurantsStackParamList,
 } from "../utils/DifferentProps";
 import { RestaurantsScreen } from "../screens/RestaurantsScreen";
@@ -13,8 +12,9 @@ import { Mughlai } from "../screens/Mughlai";
 import { Biriyani } from "../screens/Biriyani";
 import { Restaurant } from "../screens/Restaurant";
 import { Text } from "react-native";
-import { AntDesign } from "@expo/vector-icons";
+import { AntDesign, SimpleLineIcons } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native";
+import { DrawerActions } from "@react-navigation/native";
 
 const RestaurantsStack = createStackNavigator<RestaurantsStackParamList>();
 
@@ -62,8 +62,16 @@ export const RestaurantsStackScreen = () => {
             ({ navigation }: any) => ({
               title: "Restaurants",
               headerLeft: () => (
-                <TouchableOpacity onPress={() => navigation.goBack()}>
+                <TouchableOpacity style={{ paddingHorizontal: 30 }} onPress={() => navigation.navigate('HomeDrawer')}>
                   <AntDesign name="arrowleft" size={24} color="black" />
+                </TouchableOpacity>
+              ),
+              headerRight: () => (
+                <TouchableOpacity
+                  style={{ paddingHorizontal: 30 }}
+                  onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}
+                >
+                  <SimpleLineIcons name="menu" size={20} color="black" />
                 </TouchableOpacity>
               ),
             })
@@ -72,18 +80,44 @@ export const RestaurantsStackScreen = () => {
           return showScreen(
             screen.name,
             screen.component,
-            ({ route }: RestaurantProps) => ({
+            ({ navigation, route }: any) => ({
               headerTitle: () => (
                 <Text style={{ fontFamily: "poppins-bold", fontSize: 18 }}>
                   {route.params.name} Restaurant
                 </Text>
               ),
+              headerLeft: () => (
+                <TouchableOpacity style={{ paddingHorizontal: 30 }} onPress={() => navigation.goBack()}>
+                  <AntDesign name="arrowleft" size={24} color="black" />
+                </TouchableOpacity>
+              ),
+              headerRight: () => (
+                <TouchableOpacity
+                  style={{ paddingHorizontal: 30 }}
+                  onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}
+                >
+                  <SimpleLineIcons name="menu" size={20} color="black" />
+                </TouchableOpacity>
+              )
             })
           );
         }
-        return showScreen(screen.name, screen.component, {
+        return showScreen(screen.name, screen.component, ({ navigation }:any) => ({
           title: screen.name,
-        });
+          headerLeft: () => (
+            <TouchableOpacity style={{ paddingHorizontal: 30 }} onPress={() => navigation.navigate("RestaurantsDrawer", { screen: "Restaurants" })}>
+              <AntDesign name="arrowleft" size={24} color="black" />
+            </TouchableOpacity>
+          ),
+          headerRight: () => (
+            <TouchableOpacity
+              style={{ paddingHorizontal: 30 }}
+              onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}
+            >
+              <SimpleLineIcons name="menu" size={20} color="black" />
+            </TouchableOpacity>
+          )
+        }));
       })}
     </RestaurantsStack.Navigator>
   );

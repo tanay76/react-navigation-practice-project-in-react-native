@@ -1,13 +1,13 @@
 import React from "react";
 import { RestaurantDetail } from "../components/RestaurantDetail";
-import { HomeStackProps } from "../utils/DifferentProps";
+import { MixedStackProps } from "../utils/DifferentProps";
 
-export const Biriyani = ({ navigation }: HomeStackProps) => {
+export const Biriyani = ({ navigation }: MixedStackProps) => {
   return (
     <RestaurantDetail
       name1="Biriyani Restaurant"
       name2="Delicious Chicken and Mutton Biriyani"
-      onGoBackHome={() => navigation.navigate('Home')}
+      navigation={navigation}
     />
   );
 };

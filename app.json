@@ -1,5 +1,6 @@
 {
   "expo": {
+    "scheme": "rn-navigation",
     "name": "rn-navigation",
     "slug": "rn-navigation",
     "version": "1.0.0",

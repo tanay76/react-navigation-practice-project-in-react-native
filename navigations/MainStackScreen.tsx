@@ -5,10 +5,10 @@ import { HomeStackScreen } from "./HomeStackScreen";
 import { RestaurantsStackScreen } from "./RestaurantsStackScreen";
 import { ProfileStackScreen } from "./ProfileStackScreen";
 import { SettingsStackScreen } from "./SettingsStackScreen";
-import { TabNavigation } from "./TabNavigation";
+import { DrawerNavigation } from "./DrawerNavigation";
 
 const navs = [
-  { name: "TabMainStack", component: TabNavigation }, // keep this at first, otherwise it will show error
+  { name: "DrawerMainStack", component: DrawerNavigation }, // keep this at first, otherwise it will show error
   { name: "HomeMainStack", component: HomeStackScreen },
   { name: "RestaurantsMainStack", component: RestaurantsStackScreen },
   { name: "ProfileMainStack", component: ProfileStackScreen },

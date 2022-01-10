@@ -2,8 +2,9 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { ProfileStackParamList } from "../utils/DifferentProps";
 import { Profile } from "../screens/Profile";
-import { AntDesign } from "@expo/vector-icons";
+import { AntDesign, SimpleLineIcons } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native";
+import { DrawerActions } from "@react-navigation/native";
 
 const ProfileStack = createStackNavigator<ProfileStackParamList>();
 
@@ -19,7 +20,7 @@ export const ProfileStackScreen = () => {
         headerTitleStyle: {
           fontWeight: "bold",
           textTransform: "uppercase",
-        }
+        },
       }}
     >
       <ProfileStack.Screen
@@ -28,8 +29,19 @@ export const ProfileStackScreen = () => {
         options={({ navigation }) => ({
           title: "Profile",
           headerLeft: () => (
-            <TouchableOpacity onPress={() => navigation.goBack()}>
+            <TouchableOpacity
+              style={{ paddingHorizontal: 30 }}
+              onPress={() => navigation.goBack()}
+            >
               <AntDesign name="arrowleft" size={24} color="black" />
+            </TouchableOpacity>
+          ),
+          headerRight: () => (
+            <TouchableOpacity
+              style={{ paddingHorizontal: 30 }}
+              onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}
+            >
+              <SimpleLineIcons name="menu" size={20} color="black" />
             </TouchableOpacity>
           ),
         })}

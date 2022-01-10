@@ -2,11 +2,10 @@ import React from "react";
 import { View, Text, StyleSheet, ScrollView, ViewStyle } from "react-native";
 import { RestaurantCard } from "../components/RestaurantCard";
 import useDimensions from "../hooks/useDimensions";
-import { BottomStackProps, HomeStackProps, RestaurantProps, RestaurantsStackProps } from "../utils/DifferentProps";
+import { Screen } from "../navigations/Screen";
+import { MixedStackProps } from "../utils/DifferentProps";
 
-type RSProps = HomeStackProps & RestaurantsStackProps & RestaurantProps & BottomStackProps;
-
-export const RestaurantsScreen = ({ navigation }: RSProps) => {
+export const RestaurantsScreen = ({ navigation }: MixedStackProps) => {
   const { height: mobHeight, width: mobWidth } = useDimensions();
 
   const innerContainer = {
@@ -17,25 +16,42 @@ export const RestaurantsScreen = ({ navigation }: RSProps) => {
   } as ViewStyle;
 
   return (
-    <ScrollView contentContainerStyle={styles.mainContainer}>
-      <Text style={styles.textStyle}>All Restuarants</Text>
-      <View style={innerContainer}>
-        <RestaurantCard
-          name="Continental"
-          onPress={() => navigation.navigate("Continental")}
-        />
-        <RestaurantCard
-          name="Biriyani"
-          onPress={() =>
-            navigation.navigate("Restaurant", { name: "Biriyani" })
-          }
-        />
-        <RestaurantCard
-          name="Mughlai"
-          onPress={() => navigation.navigate("Restaurant", { name: "Mughlai" })}
-        />
-      </View>
-    </ScrollView>
+    <Screen
+      navigation={navigation}
+      focusedScreen={navigation.isFocused() ? "RestaurantsDrawer" : ""}
+    >
+      <ScrollView contentContainerStyle={styles.mainContainer}>
+        <Text style={styles.textStyle}>All Restuarants</Text>
+        <View style={innerContainer}>
+          <RestaurantCard
+            name="Continental"
+            onPress={() =>
+              navigation.navigate("RestaurantsDrawer", {
+                screen: "Continental",
+              })
+            }
+          />
+          <RestaurantCard
+            name="Biriyani"
+            onPress={() =>
+              navigation.navigate("RestaurantsDrawer", {
+                screen: "Restaurant",
+                params: { name: "Biriyani" },
+              })
+            }
+          />
+          <RestaurantCard
+            name="Mughlai"
+            onPress={() =>
+              navigation.navigate("RestaurantsDrawer", {
+                screen: "Restaurant",
+                params: { name: "Mughlai" },
+              })
+            }
+          />
+        </View>
+      </ScrollView>
+    </Screen>
   );
 };
 

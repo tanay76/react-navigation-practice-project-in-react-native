@@ -2,9 +2,10 @@ import React from "react";
 import { View, Text, StyleSheet, ScrollView, ViewStyle } from "react-native";
 import { RestaurantCard } from "../components/RestaurantCard";
 import useDimensions from "../hooks/useDimensions";
-import { RestaurantProps } from "../utils/DifferentProps";
+import { Screen } from "../navigations/Screen";
+import { MixedStackProps } from "../utils/DifferentProps";
 
-export const Continental = ({ navigation }: RestaurantProps) => {
+export const Continental = ({ navigation }: MixedStackProps) => {
   const { height: mobHeight, width: mobWidth } = useDimensions();
 
   const innerContainer = {
@@ -15,23 +16,34 @@ export const Continental = ({ navigation }: RestaurantProps) => {
   } as ViewStyle;
 
   return (
-    <ScrollView contentContainerStyle={styles.mainContainer}>
-      <Text style={styles.textStyle}>Continentals</Text>
-      <View style={innerContainer}>
-        <RestaurantCard
-          name="Indian"
-          onPress={() => navigation.navigate("Restaurant", { name: "Indian" })}
-        />
-        <RestaurantCard
-          name="Chinese"
-          onPress={() => navigation.navigate("Restaurant", { name: "Chinese" })}
-        />
-        <RestaurantCard
-          name="Italian"
-          onPress={() => navigation.navigate("Restaurant", { name: "Italian" })}
-        />
-      </View>
-    </ScrollView>
+    <Screen
+      navigation={navigation}
+      focusedScreen={navigation.isFocused() ? "RestaurantsDrawer" : ""}
+    >
+      <ScrollView contentContainerStyle={styles.mainContainer}>
+        <Text style={styles.textStyle}>Continentals</Text>
+        <View style={innerContainer}>
+          <RestaurantCard
+            name="Indian"
+            onPress={() =>
+              navigation.navigate("Restaurant", { name: "Indian" })
+            }
+          />
+          <RestaurantCard
+            name="Chinese"
+            onPress={() =>
+              navigation.navigate("Restaurant", { name: "Chinese" })
+            }
+          />
+          <RestaurantCard
+            name="Italian"
+            onPress={() =>
+              navigation.navigate("Restaurant", { name: "Italian" })
+            }
+          />
+        </View>
+      </ScrollView>
+    </Screen>
   );
 };
 

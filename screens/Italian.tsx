@@ -1,13 +1,13 @@
 import React from "react";
 import { RestaurantDetail } from "../components/RestaurantDetail";
-import { HomeStackProps } from "../utils/DifferentProps";
+import { MixedStackProps } from "../utils/DifferentProps";
 
-export const Italian = ({ navigation }: HomeStackProps) => {
+export const Italian = ({ navigation }: MixedStackProps) => {
   return (
     <RestaurantDetail
       name1="Italian Cuisine"
       name2="Pizza, Burger"
-      onGoBackHome={() => navigation.navigate('Home')}
+      navigation={navigation}
     />
   );
 };

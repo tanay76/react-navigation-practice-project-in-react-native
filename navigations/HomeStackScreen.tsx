@@ -2,6 +2,9 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { ExploreScreen } from "../screens/ExploreScreen";
 import { HomeStackParamList } from "../utils/DifferentProps";
+import { SimpleLineIcons } from "@expo/vector-icons";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { DrawerActions } from "@react-navigation/native";
 
 const HomeStack = createStackNavigator<HomeStackParamList>();
 
@@ -23,7 +26,17 @@ export const HomeStackScreen = () => {
       <HomeStack.Screen
         name="Home"
         component={ExploreScreen}
-        options={{ title: "EXPLORE" }}
+        options={({ navigation }) => ({
+          title: "EXPLORE",
+          headerRight: () => (
+            <TouchableOpacity
+              style={{ paddingHorizontal: 30 }}
+              onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
+            >
+              <SimpleLineIcons name="menu" size={20} color="black" />
+            </TouchableOpacity>
+          ),
+        })}
       />
     </HomeStack.Navigator>
   );

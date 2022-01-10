@@ -1,3 +1,5 @@
+//====================================== This TabNavigation is of no use ============================================//
+
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
@@ -25,7 +27,6 @@ const TabStack = createBottomTabNavigator<TabStackParamList>();
 export const TabNavigation = () => {
   return (
     <TabStack.Navigator
-      initialRouteName="HomeView"
       screenOptions={({ route }) => {
         return {
           tabBarIcon: ({ focused }) => (
