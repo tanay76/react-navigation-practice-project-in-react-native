@@ -1,1 +1,2 @@
 This is a practice project to integrate Screen Stack Navigation, Tab Navigation & Drawer Navigation.
+In the fifth commit TabNavigation has been made obsolete as a customized form of Bottom Tab is formed in Screen.tsx
